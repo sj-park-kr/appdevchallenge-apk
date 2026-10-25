@@ -1,0 +1,8 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <group android:scaleX="0.0888" android:scaleY="0.0888" android:translateX="8.53" android:translateY="10.93">
+        <path android:strokeWidth="28" android:strokeColor="#000000" android:strokeLineCap="round" android:strokeLineJoin="round" android:pathData="M512,150 C690,150 790,360 790,520 C790,690 670,820 512,820 C354,820 234,690 234,520 C234,360 334,150 512,150 Z"/>
+        <path android:strokeWidth="28" android:strokeColor="#000000" android:strokeLineCap="round" android:strokeLineJoin="round" android:pathData="M352,560 L352,520 Q352,492 380,488 L428,430 Q440,416 460,416 L564,416 Q584,416 596,430 L644,488 Q672,492 672,520 L672,560 L352,560"/>
+        <path android:strokeWidth="28" android:strokeColor="#000000" android:strokeLineCap="round" android:strokeLineJoin="round" android:pathData="M456,572 a36,36 0 1,0 -72,0 a36,36 0 1,0 72,0 M640,572 a36,36 0 1,0 -72,0 a36,36 0 1,0 72,0"/>
+        <path android:fillColor="#000000" android:pathData="M486,500 a10,10 0 1,0 -20,0 a10,10 0 1,0 20,0 M558,500 a10,10 0 1,0 -20,0 a10,10 0 1,0 20,0 M464,700 a12,12 0 1,0 -24,0 a12,12 0 1,0 24,0 M524,716 a12,12 0 1,0 -24,0 a12,12 0 1,0 24,0 M584,700 a12,12 0 1,0 -24,0 a12,12 0 1,0 24,0"/>
+    </group>
+</vector>

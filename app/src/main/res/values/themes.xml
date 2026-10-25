@@ -1,0 +1,3 @@
+<resources>
+    <style name="Theme.Carmagotchi" parent="android:Theme.Material.NoActionBar" />
+</resources>

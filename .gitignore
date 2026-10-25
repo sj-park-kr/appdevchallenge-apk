@@ -18,3 +18,11 @@ captures/
 # OS
 .DS_Store
 Thumbs.db
+.kotlin/
+
+# 에뮬레이터 확인용 스크린샷 (로컬 증거만, README용은 docs/images/에 따로 둔다)
+docs/shots/
+
+# local agent config
+.claude/
+CLAUDE.md

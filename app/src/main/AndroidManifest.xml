@@ -1,0 +1,72 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-feature android:name="android.hardware.type.automotive" android:required="true" />
+
+    <!-- Pleos Vehicle SDK / NaviHelper: 읽기만 -->
+    <uses-permission android:name="pleos.car.permission.CAR_DRIVE" />
+    <uses-permission android:name="pleos.car.permission.CAR_ENERGY" />
+    <uses-permission android:name="pleos.car.permission.CAR_SAFETY" />
+    <uses-permission android:name="pleos.car.permission.PRIVATE_CAR_SAFETY" /> <!-- getTelltalesInfo(TPMS 등). 에뮬레이터에서는 normal -->
+    <uses-permission android:name="pleos.car.permission.CAR_SEATS" />
+    <uses-permission android:name="pleos.car.permission.CAR_WINDOWS" />
+    <uses-permission android:name="pleos.car.permission.CAR_LIGHTS" />
+    <uses-permission android:name="pleos.car.permission.CAR_INFO" />
+    <uses-permission android:name="pleos.car.permission.NAVI_ROUTE" />
+    <uses-permission android:name="android.car.permission.CAR_POWERTRAIN" />
+    <uses-permission android:name="android.car.permission.CAR_SPEED" /> <!-- dangerous: 동의 뒤 실행 중 요청 -->
+    <uses-permission android:name="android.car.permission.CAR_INFO" /> <!-- INFO_FUEL_TYPE -->
+    <uses-permission android:name="android.car.permission.CAR_EXTERIOR_ENVIRONMENT" /> <!-- ENV_OUTSIDE_TEMPERATURE -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- 포그라운드 서비스 상시 알림만. 거부해도 서비스는 돈다 -->
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:allowBackup="false"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Carmagotchi">
+        <!-- 회전 다이얼 미지원. distractionOptimized 미선언 = 주행 중 사용 불가(의도) -->
+        <meta-data android:name="com.hmg.rotary.ROTARY_SUPPORTED" android:value="false" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".platform.PetService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Observes vehicle state while the car is on so the in-car pet can react when parked." />
+        </service>
+
+        <!-- adb 개발·시연 주입. debug 빌드 또는 시연 모드를 켠 때만 동작 -->
+        <receiver android:name=".platform.DemoReceiver" android:exported="true">
+            <intent-filter><action android:name="com.carmagotchi.app.debug.INJECT" /></intent-filter>
+        </receiver>
+
+        <receiver android:name=".platform.BootReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Gleo가 setPackage + sendBroadcast로 부른다. 응답에 민감정보가 없다 -->
+        <receiver android:name=".gleo.GleoReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="CHAMA_MOOD" />
+                <action android:name="CHAMA_DISTANCE" />
+                <action android:name="CHAMA_THANKS" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

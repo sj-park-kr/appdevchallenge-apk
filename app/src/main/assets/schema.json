@@ -1,0 +1,52 @@
+{
+  "packageName": "com.carmagotchi.app",
+  "appDescription": "A virtual pet that lives in the car and reacts to real vehicle signals during trips and while parked.",
+  "version": "1.0.0",
+  "actionCalls": [
+    {
+      "type": "function",
+      "function": {
+        "name": "CHAMA_MOOD",
+        "description": "Tell how the in-car pet feels right now and the main reason, based on the current trip and vehicle condition.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "topic": { "type": "string", "enum": ["mood", "hunger", "health"], "description": "Which part of the pet's condition the user asks about." }
+          },
+          "required": []
+        },
+        "component": "service"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "CHAMA_DISTANCE",
+        "description": "Tell how far the in-car pet has traveled with the user and how far remains to the current destination.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "scope": { "type": "string", "enum": ["trip", "today", "together", "remaining"], "description": "Which distance the user asks about." }
+          },
+          "required": []
+        },
+        "component": "service"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "CHAMA_THANKS",
+        "description": "Deliver the user's kind words to the in-car pet and return its short reply.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "kind": { "type": "string", "enum": ["thanks", "goodnight", "praise", "love"], "description": "Type of kind words the user said to the pet." }
+          },
+          "required": []
+        },
+        "component": "service"
+      }
+    }
+  ]
+}

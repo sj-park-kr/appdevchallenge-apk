@@ -1,0 +1,346 @@
+DLG-HATCH-EGG-E1	E		**톡… 톡톡.** (알 속에서 누가 두드려요)
+DLG-HATCH-CRACK-E1	E		**뾰옥!** (이 차가 내 집이라 좋아요)
+DLG-HATCH-CRACK-E2	E	BIRTH_USED	**뾰옥!** (새 집으로 이사 와서 두근두근)
+DLG-HATCH-NAME-S1	*		이름을 지어 주세요.
+DLG-HATCH-NAME-S2	*		이름은 언제든 바꿀 수 있어요.
+DLG-HATCH-NAME-S3	*		이름을 한 글자 이상 써 주세요.
+DLG-HATCH-NAMED-E1	E		**꼬물꼬물!** (이름이 마음에 쏙 드나 봐요)
+DLG-HATCH-CONSENT-S1	*		{펫이름|이/가} 본 것은 이 차 안에만 저장돼요.
+DLG-HATCH-CARD-S1	*		{펫이름} · 태어난 날 · {km}km
+DLG-DEPART-FIRST_OF_DAY-01	B+	TIME:MORNING	좋은 아침! 오늘도 같이 가자.
+DLG-DEPART-FIRST_OF_DAY-02	B+	TIME:MORNING	잘 잤어? 출발 준비 끝!
+DLG-DEPART-FIRST_OF_DAY-03	B+	TIME:MORNING	기지개 쭉~ 좋은 아침!
+DLG-DEPART-FIRST_OF_DAY-04	B+	TIME:MORNING,FIRST	좋은 아침! 첫 출근이다.
+DLG-DEPART-FIRST_OF_DAY-05	B+	TIME:MORNING,DAY:WEEKEND	주말이다! 오늘은 어디 갈까?
+DLG-DEPART-FIRST_OF_DAY-06	B+	TIME:DAY	오후다! 오늘 첫 나들이네.
+DLG-DEPART-FIRST_OF_DAY-07	C+	TIME:DAY	점심은 맛있게 먹었어?
+DLG-DEPART-FIRST_OF_DAY-08	B+	TIME:EVENING	저녁 바람 좋다. 가 볼까?
+DLG-DEPART-FIRST_OF_DAY-09	C+	TIME:EVENING	오늘 하루도 수고했어.
+DLG-DEPART-FIRST_OF_DAY-10	B+	TIME:NIGHT	늦은 밤이네. 내가 옆에 있을게.
+DLG-DEPART-FIRST_OF_DAY-11	B+	TIME:NIGHT	밤 공기 시원하다. 같이 가자.
+DLG-DEPART-FIRST_OF_DAY-12	C+	TIME:MORNING,CALM	느긋한 아침이네. 좋다~
+DLG-DEPART-FIRST_OF_DAY-13	C+	TIME:MORNING,LIVELY	아침이다! 오늘도 힘차게 가자!
+DLG-DEPART-FIRST_OF_DAY-14	C+	EXPLORER	오늘은 어디로 모험 갈까?
+DLG-DEPART-FIRST_OF_DAY-15	C+	TOWN	오늘도 우리 동네 한 바퀴?
+DLG-DEPART-FIRST_OF_DAY-16	C+	SOLO	오늘도 둘이라 좋다.
+DLG-DEPART-FIRST_OF_DAY-17	Y		오늘도 너랑이라 든든해.
+DLG-DEPART-FIRST_OF_DAY-18	A+		우리 함께한 지 {일수}일째!
+DLG-DEPART-FIRST_OF_DAY-19	B+	SEAT_HEAT	엉덩이가 따끈따끈해~
+DLG-DEPART-FIRST_OF_DAY-E1	E	TIME:MORNING	**쿨쿨… 뽀옥?** (막 잠에서 깼어요)
+DLG-DEPART-FIRST_OF_DAY-E2	E		**꼬물.** (오늘도 같이 가서 좋아요)
+DLG-DEPART-AGAIN-01	B+		다시 출발! 가 보자.
+DLG-DEPART-AGAIN-02	B+		또 어디 가? 나도 갈래!
+DLG-DEPART-AGAIN-03	B+		좋아, 다음 모험!
+DLG-DEPART-AGAIN-04	C+	CALM	준비됐어. 출발~
+DLG-DEPART-AGAIN-E1	E		**콩콩.** (또 나가서 신나요)
+DLG-DEPART-STAGE_UP-01	*	TO:BABY	일주일 동안 고마워.
+DLG-DEPART-STAGE_UP-02	*	TO:BABY	껍질 벗었다! 나 어때?
+DLG-DEPART-STAGE_UP-03	*	TO:CHILD	한 달! 나 좀 컸지?
+DLG-DEPART-STAGE_UP-04	*	TO:CHILD	너랑 다니다 보니 쑥 컸어.
+DLG-DEPART-STAGE_UP-05	*	TO:ADULT	너랑 다녀서 이렇게 컸어.
+DLG-DEPART-STAGE_UP-06	*	TO:ADULT,CALM	느긋한 어른이 됐어. 고마워.
+DLG-DEPART-STAGE_UP-07	*	TO:ADULT,LIVELY	씩씩한 어른이 됐어! 고마워.
+DLG-DEPART-STAGE_UP-08	*	TO:BUDDY	1년 동안 고마워, 단짝!
+DLG-DEPART-STAGE_UP-09	*	TO:ADULT,TO:BUDDY	어른도 되고, 단짝도 됐어!
+DLG-DEPART-STAGE_UP-H1	*	TO:BABY,HEARTS_FULL	하트 가득 안고 컸어!
+DLG-DEPART-STAGE_UP-H2	*	TO:CHILD,HEARTS_FULL	마음 가득 받고 쑥 컸어. 고마워!
+DLG-DEPART-STAGE_UP-H3	*	TO:ADULT,HEARTS_FULL	네 마음 다 받고 어른이 됐어.
+DLG-DEPART-STAGE_UP-H4	*	TO:BUDDY,HEARTS_FULL	마음 가득, 이제 단짝이야!
+DLG-DEPART-BIRTHDAY-01	B+		오늘 우리 생일이야!
+DLG-DEPART-BIRTHDAY-02	B+	YEAR2+	생일 축하해! 또 한 살 컸어.
+DLG-DEPART-BIRTHDAY-03	B+	LATE	생일 축하는 오늘 해도 좋아!
+DLG-DEPART-BIRTHDAY-04	Y		우리 생일! 함께라서 행복해.
+DLG-DEPART-LONG_ABSENCE-01	B+		{일수}일 만이야! 보고 싶었어.
+DLG-DEPART-LONG_ABSENCE-02	B+		오랜만이야! 반가워!
+DLG-DEPART-LONG_ABSENCE-03	C+		기다리면서 방 정리했어!
+DLG-DEPART-LONG_ABSENCE-04	B+		왔다! 꼬리가 멈추질 않아.
+DLG-DEPART-LONG_ABSENCE-05	B+	ABSENT30	오랜만이다! 먼지 털고 나왔어.
+DLG-DEPART-LONG_ABSENCE-06	C+	ABSENT30	다시 만나서 정말 좋다.
+DLG-DEPART-LONG_ABSENCE-E1	E		**콩콩콩!** (오랜만이라 반가워요)
+DLG-DEPART-REFUEL-01	B+		냠냠! 든든해.
+DLG-DEPART-REFUEL-02	B+		배부르다~ 고마워!
+DLG-DEPART-REFUEL-03	B+		밥 먹었다! 힘이 솟아.
+DLG-DEPART-REFUEL-04	C+	CALM	든든하다. 천천히 소화 중~
+DLG-DEPART-REFUEL-E1	E		**냠.** (배가 든든해요)
+DLG-DEPART-RECHARGE-01	B+		찌릿, 충전 완료! 든든해.
+DLG-DEPART-RECHARGE-02	B+		찌릿찌릿! 배불러.
+DLG-DEPART-RECHARGE-E1	E		**찌릿.** (배가 든든해요)
+DLG-DEPART-WARN_CLEARED-01	B+		다 나았다! 고마워.
+DLG-DEPART-WARN_CLEARED-02	B+	AIL:TPMS	발이 따뜻해졌어! 고마워.
+DLG-DEPART-WARN_CLEARED-03	B+	AIL:WASHER	눈이 반짝반짝해졌어!
+DLG-DEPART-WARN_CLEARED-04	B+	AIL:OIL	기운이 돌아왔어! 고마워.
+DLG-DEPART-WARN_CLEARED-E1	E		**뾰롱!** (다 나아서 개운해요)
+DLG-DEPART-WARN_TPMS-01	B+		발이 시려… 공기 넣어 줄 수 있어?
+DLG-DEPART-WARN_TPMS-02	C+		발끝이 시려. 공기압 봐 줄래?
+DLG-DEPART-WARN_TPMS-03	B+	DAY8+	발은 아직 시려. 시간 날 때 봐 줘.
+DLG-DEPART-WARN_TPMS-E1	E		**끙…** (발이 시린가 봐요)
+DLG-DEPART-WARN_WASHER-01	B+		눈이 뻑뻑해… 워셔액 채워 줄래?
+DLG-DEPART-WARN_WASHER-02	C+		눈이 침침해. 워셔액 한 병이면 돼!
+DLG-DEPART-WARN_WASHER-E1	E		**끔뻑끔뻑.** (눈이 뻑뻑한가 봐요)
+DLG-DEPART-WARN_OIL-01	B+		기운이 없어… 오일 한번 봐 줄래?
+DLG-DEPART-WARN_OIL-E1	E		**흐물.** (기운이 없나 봐요)
+DLG-DEPART-WARN_OTHER-01	B+	SERIOUS	걱정돼. 꼭 점검 받아 보자.
+DLG-DEPART-WARN_OTHER-02	*	CRASH	괜찮아? 몸부터 살펴.
+DLG-DEPART-LOW_FUEL-01	B+		배고파… 오늘 주유할 수 있어?
+DLG-DEPART-LOW_FUEL-02	B+		배꼽시계가 꼬르륵. 밥 먹으러 갈까?
+DLG-DEPART-LOW_FUEL-03	C+		출출해. 주유소 들를 수 있어?
+DLG-DEPART-LOW_BATTERY-01	B+		배고파… 충전하러 갈까?
+DLG-DEPART-LOW_BATTERY-02	C+		찌릿이 부족해. 충전할 수 있어?
+DLG-DEPART-LOW_FUEL-E1	E		**꼬르륵.** (배가 고픈가 봐요)
+DLG-DEPART-SEASON_EVENT-01	B+	SE-SEOLLAL	설날이다! 새해 복 많이 받아.
+DLG-DEPART-SEASON_EVENT-02	B+	SE-SEOLLAL|SE-CHUSEOK,FAR	먼 길 가는 날! 쉬엄쉬엄 가자.
+DLG-DEPART-SEASON_EVENT-03	B+	SE-CHUSEOK	추석이다! 송편 먹고 싶다.
+DLG-DEPART-SEASON_EVENT-04	B+	SE-SEOLLAL|SE-CHUSEOK,DEST:GRANDPARENT	할머니 집 가는 날!
+DLG-DEPART-SEASON_EVENT-05	C+	SE-SEOLLAL|SE-CHUSEOK,FAR	먼 길이네. 휴게소에서 쉬어 가자.
+DLG-DEPART-SEASON_EVENT-06	B+	SE-NEWYEAR	새해 첫 출발이다! 잘 부탁해.
+DLG-DEPART-SEASON_EVENT-07	B+	SE-XMAS	메리 크리스마스! 반짝반짝.
+DLG-DEPART-SEASON_EVENT-08	B+	SE-CHILDREN,PAX	어린이날이다! {동승자|아/야}, 축하해!
+DLG-DEPART-SEASON_EVENT-09	B+	SE-CHILDREN	어린이날! 나도 어린이 할래.
+DLG-DEPART-SEASON_EVENT-10	B+	SE-SUMMER	여름이다! 바람 맛 좋겠다.
+DLG-DEPART-SEASON_EVENT-11	B+	SE-ANNIV-100	만난 지 100일이야! 고마워.
+DLG-DEPART-SEASON_EVENT-E1	E		**뾱!** (특별한 날이라 설레요)
+DLG-DEPART-PASSENGER_ON-01	B+	PAX	새 친구다! 안녕 {동승자|아/야}?
+DLG-DEPART-PASSENGER_ON-02	B+	PAX	{동승자|이/가} 왔다! 반가워.
+DLG-DEPART-PASSENGER_ON-03	B+	SEAT:FRONT	옆자리에 누가 왔네? 안녕!
+DLG-DEPART-PASSENGER_ON-04	B+	PAX2+	오늘은 북적북적하네!
+DLG-DEPART-PASSENGER_ON-05	C+	PAX2+,FRIENDLY	친구들이다! 신난다!
+DLG-DEPART-PASSENGER_ON-06	B+	MEM:PAX_AGAIN	{동승자|이랑/랑} 또 같이 간다!
+DLG-DEPART-PASSENGER_ON-07	B+	FIRST	처음 보는 친구다! 반가워.
+DLG-DEPART-PASSENGER_ON-08	B+	PAX,BELT:ALL	다들 벨트 딸깍! 준비 끝.
+DLG-DEPART-PASSENGER_ON-09	C+	PAX,SOLO	손님이다! 오늘은 셋이네.
+DLG-DEPART-PASSENGER_ON-E1	E		**콩콩!** (새 친구가 반가워요)
+DLG-DEPART-REST_STOP-01	B+		아까 쉬어서 개운해!
+DLG-DEPART-REST_STOP-02	C+		잘 쉬었다. 다시 가 볼까?
+DLG-DEPART-REST_STOP-E1	E		**후아~** (푹 쉬어서 개운해요)
+DLG-ARRIVE-DEFAULT-01	B+	LEN:SHORT	짧고 좋은 산책이었어.
+DLG-ARRIVE-DEFAULT-02	B+	LEN:SHORT	금방 왔다! 가까웠네.
+DLG-ARRIVE-DEFAULT-03	B+	LEN:SHORT	콧바람 쐬고 왔다~
+DLG-ARRIVE-DEFAULT-04	B+	LEN:MID	{분}분 흔들흔들, 재밌었어.
+DLG-ARRIVE-DEFAULT-05	B+	LEN:MID	오늘 길도 무사히 도착!
+DLG-ARRIVE-DEFAULT-06	B+	LEN:MID	창밖 구경 잘 했어.
+DLG-ARRIVE-DEFAULT-07	B+		도착! 같이 와서 좋다.
+DLG-ARRIVE-DEFAULT-08	C+	CALM	느긋하게 잘 왔다~
+DLG-ARRIVE-DEFAULT-09	C+	LIVELY	도착! 오늘도 씩씩하게!
+DLG-ARRIVE-DEFAULT-10	A+		오늘도 같이 와서 다행이야.
+DLG-ARRIVE-DEFAULT-11	Y		너랑이면 어디든 좋아.
+DLG-ARRIVE-DEFAULT-12	B+	LEN:LONG	멀리 왔다. 고생했어.
+DLG-ARRIVE-DEFAULT-13	B+	LEN:LONG	긴 길이었지? 수고했어.
+DLG-ARRIVE-DEFAULT-14	C+	LEN:LONG	한참 왔네. 기지개 켜자.
+DLG-ARRIVE-DEFAULT-15	C+	LEN:LONG,EXPLORER	먼 길 구경, 최고였어.
+DLG-ARRIVE-DEFAULT-16	C+	MEM:SAMEPLACE	여기 또 왔네! 익숙하다.
+DLG-ARRIVE-DEFAULT-17	C+	MEM:SAMEPLACE,TOWN	우리 단골 장소다!
+DLG-ARRIVE-DEFAULT-18	B		도착! 꼬리 살랑살랑.
+DLG-ARRIVE-DEFAULT-E1	E		**꼬물꼬물.** (창밖이 궁금한가 봐요)
+DLG-ARRIVE-DEFAULT-E2	E	LEN:LONG	**새근새근.** (가다가 잠들었어요)
+DLG-ARRIVE-DEFAULT-E3	E		**톡톡.** (도착해서 반가워요)
+DLG-ARRIVE-HARD_BRAKE-01	B+		깜짝 놀랐어. 그래도 잘 왔다!
+DLG-ARRIVE-HARD_BRAKE-02	B+		아까 한 번 깜짝 놀랐어.
+DLG-ARRIVE-HARD_BRAKE-03	B+		한 번 휘청했어. 이제 괜찮아.
+DLG-ARRIVE-HARD_BRAKE-04	B+		깜짝! 그래도 무사히 도착.
+DLG-ARRIVE-HARD_BRAKE-05	B+	COUNT:2+	두어 번 깜짝했어. 그래도 도착!
+DLG-ARRIVE-HARD_BRAKE-06	C+	COUNT:2+	몇 번 휘청했지만 괜찮아.
+DLG-ARRIVE-HARD_BRAKE-07	B+	REAR	뒤에서 같이 휘청했어. 이제 괜찮아.
+DLG-ARRIVE-HARD_BRAKE-08	B+	REAR	{동승자|이랑/랑} 같이 깜짝했어.
+DLG-ARRIVE-HARD_BRAKE-09	C+	CALM	깜짝했지만, 숨 한 번 후~
+DLG-ARRIVE-HARD_BRAKE-10	C+	LIVELY	어이쿠! 그래도 잘 버텼다!
+DLG-ARRIVE-HARD_BRAKE-11	B+	RAIN	빗길에 깜짝했어. 무사히 와서 다행.
+DLG-ARRIVE-HARD_BRAKE-12	B		깜짝! 휘청!
+DLG-ARRIVE-HARD_BRAKE-13	A+		놀랐지만, 네가 있어 괜찮아.
+DLG-ARRIVE-HARD_BRAKE-E1	E		**흠칫!** (놀랐지만 괜찮아요)
+DLG-ARRIVE-HARD_BRAKE-E2	E		**도르륵…** (흔들려도 괜찮아요)
+DLG-ARRIVE-SHARP_TURN-01	B+		커브에서 데구르르~
+DLG-ARRIVE-SHARP_TURN-02	B+		커브에서 살짝 기울었어.
+DLG-ARRIVE-SHARP_TURN-03	B+		빙글~ 그래도 괜찮아.
+DLG-ARRIVE-SHARP_TURN-04	B+	REAR	뒤에서도 같이 기울었어.
+DLG-ARRIVE-SHARP_TURN-05	C+	CALM	커브에서 살짝 어질했어.
+DLG-ARRIVE-SHARP_TURN-06	B		빙글빙글!
+DLG-ARRIVE-SHARP_TURN-E1	E		**도르르.** (데굴 굴러서 깜짝)
+DLG-ARRIVE-SMOOTH_TRIP-01	B+		오늘은 구름 위 같았어.
+DLG-ARRIVE-SMOOTH_TRIP-02	B+		꾸벅꾸벅, 푹 잤어.
+DLG-ARRIVE-SMOOTH_TRIP-03	B+		사르르 왔다. 기분 좋아.
+DLG-ARRIVE-SMOOTH_TRIP-04	C+	CALM	느긋하게 와서 좋았어.
+DLG-ARRIVE-SMOOTH_TRIP-05	C+	LIVELY	오늘 리듬 딱 좋았어!
+DLG-ARRIVE-SMOOTH_TRIP-06	B+	REAR	뒤에서도 푹 잤을 거야.
+DLG-ARRIVE-SMOOTH_TRIP-07	A+		포근한 길이었어. 고마워.
+DLG-ARRIVE-SMOOTH_TRIP-08	B		쿨쿨, 좋았어!
+DLG-ARRIVE-SMOOTH_TRIP-E1	E		**쿨쿨.** (포근해서 푹 잤어요)
+DLG-ARRIVE-RAIN-01	B+	RAIN	비 오는 길, 우산 쓰고 왔어.
+DLG-ARRIVE-RAIN-02	B+	RAIN	와이퍼 소리 자장가 같았어.
+DLG-ARRIVE-RAIN-03	B+	RAIN	빗소리 들으며 왔다.
+DLG-ARRIVE-RAIN-04	B+	RAIN,FIRST	첫 비다! 우산 처음 써 봐.
+DLG-ARRIVE-RAIN-05	C+	RAIN,MEM:SAMEEVENT7	이 길은 비랑 친한가 봐.
+DLG-ARRIVE-RAIN-06	C+	RAIN,MEM:VISITOR_VIS-01	이 길 또 비네. 지난주엔 달팽이!
+DLG-ARRIVE-RAIN-07	B+	RAIN,SE-MONSOON	장마다. 장화 꺼내야겠어.
+DLG-ARRIVE-RAIN-08	C+	RAIN,SE-MONSOON	장마철 빗길, 같이 와서 든든.
+DLG-ARRIVE-RAIN-09	B+	SNOW,FIRST	첫눈이다! 소복소복.
+DLG-ARRIVE-RAIN-10	B+	SNOW	눈길 하얗다. 털모자 썼어!
+DLG-ARRIVE-RAIN-11	B+	FOG	뿌연 길, 구름 속 같았어.
+DLG-ARRIVE-RAIN-12	B	RAIN	비! 퐁퐁!
+DLG-ARRIVE-RAIN-13	A+	RAIN	빗길 같이 와 줘서 고마워.
+DLG-ARRIVE-RAIN-E1	E	RAIN	**톡, 토독.** (빗소리가 좋아요)
+DLG-ARRIVE-NIGHT-01	B+	NIGHT	밤길 반짝반짝 예뻤어.
+DLG-ARRIVE-NIGHT-02	B+	NIGHT	깜깜한 길, 같이 와서 든든했어.
+DLG-ARRIVE-NIGHT-03	B+	NIGHT,TIME:NIGHT	별 보며 왔다. 잘 자자.
+DLG-ARRIVE-NIGHT-04	B+	NIGHT,FIRST	첫 밤길! 불빛이 예뻐.
+DLG-ARRIVE-NIGHT-05	C+	NIGHT,CALM	밤길 조용해서 좋았어.
+DLG-ARRIVE-NIGHT-06	B	NIGHT	반짝반짝!
+DLG-ARRIVE-NIGHT-E1	E	NIGHT	**새근새근.** (밤길에 잠들었어요)
+DLG-ARRIVE-PASSENGER_ON-01	B+	PAX	{동승자|이랑/랑} 와서 신났어!
+DLG-ARRIVE-PASSENGER_ON-02	B+	PAX2+	북적북적, 오늘 즐거웠다.
+DLG-ARRIVE-PASSENGER_ON-03	B+	PAX	친구랑 같이 오니 금방이야.
+DLG-ARRIVE-PASSENGER_ON-04	B+	PAX,FIRST	첫 친구랑 드라이브했어!
+DLG-ARRIVE-PASSENGER_ON-05	B+	MEM:PAX_COUNT_10	{동승자|이랑/랑} 열 번째 드라이브!
+DLG-ARRIVE-PASSENGER_ON-06	B+	MEM:PAX_COUNT_50	{동승자|이랑/랑} 벌써 쉰 번째야!
+DLG-ARRIVE-PASSENGER_ON-07	C+	PAX2+,FRIENDLY	친구들이랑 오니 최고야!
+DLG-ARRIVE-PASSENGER_ON-08	C+	PAX,SOLO	오랜만에 손님이다! 좋았어.
+DLG-ARRIVE-PASSENGER_ON-E1	E	PAX	**콩콩!** (새 친구랑 와서 신나요)
+DLG-ARRIVE-NEW_PLACE-01	B+		처음 와 보는 동네야!
+DLG-ARRIVE-NEW_PLACE-02	B+		여긴 어디지? 두근두근.
+DLG-ARRIVE-NEW_PLACE-03	B+		새 도장 쾅! 처음 왔어.
+DLG-ARRIVE-NEW_PLACE-04	B+	KIND:SEA,FIRST	바다 냄새 처음 맡아 봐!
+DLG-ARRIVE-NEW_PLACE-05	B+	KIND:SEA	파도 소리 들린다! 바다다!
+DLG-ARRIVE-NEW_PLACE-06	B+	KIND:MOUNTAIN	나무 냄새 좋다. 처음이야.
+DLG-ARRIVE-NEW_PLACE-07	B+	KIND:HOME_REGION	여기가 우리 동네구나!
+DLG-ARRIVE-NEW_PLACE-08	B+		{장소}, 처음이야!
+DLG-ARRIVE-NEW_PLACE-09	C+	EXPLORER	새 길 발견! 지도에 콕.
+DLG-ARRIVE-NEW_PLACE-10	B+	NEW_PROVINCE	새 동네 간식 받았어!
+DLG-ARRIVE-NEW_PLACE-E1	E		**두근두근.** (처음 온 곳이 신기해요)
+DLG-ARRIVE-REST_STOP-01	B+		쉬어 가니 좋다~
+DLG-ARRIVE-REST_STOP-02	B+		기지개 쭉! 잠깐 쉬자.
+DLG-ARRIVE-REST_STOP-03	B+	KIND:REST_AREA	휴게소다! 도장 하나 쾅.
+DLG-ARRIVE-REST_STOP-04	C+		쉬는 것도 여행이야.
+DLG-ARRIVE-REST_STOP-05	B+	SE-SEOLLAL|SE-CHUSEOK	명절 길엔 쉬어 가야지!
+DLG-ARRIVE-REST_STOP-E1	E		**후아~** (쉬어 가니 좋아요)
+DLG-ARRIVE-VISITOR-01	B+	VISITOR:VIS-01	비 오는 길에 달팽이를 만났어!
+DLG-ARRIVE-VISITOR-02	B+	VISITOR:VIS-02	참새 짹짹이가 따라왔어!
+DLG-ARRIVE-VISITOR-03	B+	VISITOR:VIS-03	반딧불 깜빡이를 만났어!
+DLG-ARRIVE-VISITOR-04	B+	VISITOR:VIS-04	밤송이 고슴도치가 왔어!
+DLG-ARRIVE-VISITOR-05	B+	VISITOR:VIS-05	바람 타고 살랑이가 왔어!
+DLG-ARRIVE-VISITOR-06	B+	VISITOR:VIS-06	꽃 냄새 따라 붕붕이가!
+DLG-ARRIVE-VISITOR-07	B+	VISITOR:VIS-07	바다에서 끼룩이를 만났어!
+DLG-ARRIVE-VISITOR-08	B+	VISITOR:VIS-08	숲에서 도토리가 놀러 왔어!
+DLG-ARRIVE-VISITOR-09	B+	VISITOR:VIS-09	쉬는 사이 부엉박사가 왔어!
+DLG-ARRIVE-VISITOR-10	B+	VISITOR:VIS-10	뿌연 길에서 뽀얌이를 봤어!
+DLG-ARRIVE-VISITOR-11	B+	VISITOR:VIS-11	눈길에 소복이가 내려왔어!
+DLG-ARRIVE-VISITOR-12	B+	VISITOR:VIS-12	처음 가는 밤길에 반짝이가!
+DLG-ARRIVE-VISITOR-13	B+	REVISIT	{길동무|이/가} 또 놀러 왔어!
+DLG-ARRIVE-VISITOR-14	B+	REVISIT	오늘 손님은 {길동무}!
+DLG-ARRIVE-VISITOR-15	B+	REVISIT	{길동무|이랑/랑} 또 만났다!
+DLG-ARRIVE-VISITOR-16	C+	REVISIT,FRIENDLY	{길동무}도 우리 차가 좋대!
+DLG-ARRIVE-VISITOR-E1	E		**도르르!** (누가 찾아와서 신기해요)
+DLG-ARRIVE-MILESTONE_KM-01	B+		같이 {km}km 왔어. 고마워!
+DLG-ARRIVE-MILESTONE_KM-02	B+		우리 벌써 {km}km래!
+DLG-ARRIVE-MILESTONE_KM-03	B+	KM:10000	만 km! 같이 와서 기뻐.
+DLG-ARRIVE-MILESTONE_KM-E1	E		**뾱!** ({km}km라니 뿌듯해요)
+DLG-ARRIVE-WARN_CLEARED-01	B+		다 나았다! 고마워.
+DLG-ARRIVE-WARN_CLEARED-02	B+	AIL:TPMS	발이 따뜻해! 고마워.
+DLG-ARRIVE-WARN_CLEARED-03	B+	AIL:WASHER	눈이 반짝반짝해졌어!
+DLG-ARRIVE-WARN_CLEARED-04	B+	AIL:OIL	기운 났다! 고마워.
+DLG-ARRIVE-WARN_CLEARED-E1	E		**뾰롱!** (다 나아서 개운해요)
+DLG-ARRIVE-SEASON_EVENT-01	B+	SE-CHERRY	벚꽃길 지나왔어! 예쁘다.
+DLG-ARRIVE-SEASON_EVENT-02	B+	SE-AUTUMN	알록달록 단풍길이었어.
+DLG-ARRIVE-SEASON_EVENT-03	B+	SE-SEOLLAL|SE-CHUSEOK,LEN:LONG	먼 길 도착! 정말 수고했어.
+DLG-ARRIVE-SEASON_EVENT-E1	E		**뾱!** (계절이 바뀌어서 신기해요)
+DLG-ROOM-PET-01	B+		헤헤, 간지러워.
+DLG-ROOM-PET-02	C+		거기 좋아. 조금만 더.
+DLG-ROOM-PET-03	C+	CALM	음~ 포근하다.
+DLG-ROOM-PET-04	C+	LIVELY	히히! 또 해 줘!
+DLG-ROOM-PET-05	B+	PET_CAP	기분 최고야. 이제 쉴래.
+DLG-ROOM-PET-ANNOY-01	B+	PET_ANNOY	그만~ 너무 간지러워!
+DLG-ROOM-PET-ANNOY-02	B+	PET_ANNOY	히잉, 살살 쓰다듬어 줘.
+DLG-ROOM-PET-ANNOY-03	B+	PET_ANNOY	뿌우. 잠깐 쉬었다가 해 줘.
+DLG-ROOM-PET-E1	E		**톡!** (좋아서 꼼지락)
+DLG-ROOM-PET-ANNOY-E1	E	PET_ANNOY	**뿌우!** (너무 간지러워서 뾰로통)
+DLG-ROOM-SNACK-01	B+		냠! 맛있다.
+DLG-ROOM-SNACK-02	B+	FIRST_REGION_SNACK	이거 처음 먹어 봐!
+DLG-ROOM-SNACK-03	B+	SNACK_CAP	배불러. 이따 먹을래.
+DLG-ROOM-SNACK-04	C+		냠! 간식은 언제나 좋아.
+DLG-ROOM-SNACK-05	B+	SNACK_FULL	간식 주머니가 가득 찼어.
+DLG-ROOM-SNACK-06	B+	NO_SNACK	간식 다 떨어졌어. 내일 2개 또 생겨!
+DLG-ROOM-SNACK-07	B+	SNACK_DAILY	오늘 간식이 생겼어!
+DLG-ROOM-SNACK-E1	E		**냠.** (맛있어서 행복해요)
+DLG-ROOM-SNACK-E2	E	NO_SNACK	**뒤적뒤적.** (아쉽지만 내일 또 생겨요)
+DLG-ROOM-DECO-01	B+		여기 딱이다!
+DLG-ROOM-DECO-02	B+	FIRST_DECO	방이 예뻐졌어!
+DLG-ROOM-DECO-03	B+	SLOTS_UP	칸이 늘었어! 뭐 놓을까?
+DLG-ROOM-IDLE-01	B+	IDLE30	창밖 구경 중…
+DLG-ROOM-IDLE-02	B+	PARK10	같이 기다리자. 나 여기 있어.
+DLG-ROOM-IDLE-03	B+	TIME:NIGHT	졸려… 그래도 같이 있을래.
+DLG-ROOM-IDLE-04	B+	AMBIENT	오늘 조명 예쁘다.
+DLG-ROOM-IDLE-05	B+	PROFILE:EV,CHARGING	충전 중엔 나도 쉬는 중~
+DLG-ROOM-IDLE-E1	E		**꼬물꼬물.** (심심해서 꼼지락)
+DLG-ROOM-ALBUM-01	B+	WEEKLY_ALBUM	이번 주 앨범 나왔어!
+DLG-ROOM-ALBUM-02	C+	ALBUM_OPEN	이거 기억나? 그날 좋았지.
+DLG-ROOM-ALBUM-03	C+	AFF80,WEEKLY_ALBUM	편지 썼어. 앨범에 넣어 뒀어!
+DLG-ROOM-DEX-01	B+	DEX_OPEN	다음엔 누가 놀러 올까?
+DLG-ROOM-RECAP-01	B+	RECAP	아까 이야기 들어 볼래?
+DLG-ROOM-AIL-01	B+	AIL:TPMS	공기 넣으면 금방 나을 거야.
+DLG-ROOM-AIL-02	B+	AIL:WASHER	워셔액 채우면 눈이 반짝할 거야.
+DLG-ROOM-HUNGRY-01	B+	HUNGRY	배꼽시계가 꼬르륵.
+DLG-ROOM-GUEST-01	B+	GUEST	지금은 쉬는 중이야. 쿨쿨.
+DLG-ROOM-CRASH-01	*	CRASH	괜찮아? 몸부터 살펴.
+DLG-GLEO-MOOD-01	*	CRASH	괜찮아? 몸부터 살펴.
+DLG-GLEO-MOOD-02	B+	SERIOUS 아픔	걱정돼. 내리면 꼭 점검 받아 보자.
+DLG-GLEO-MOOD-03	B+	REAR + 최근 10분 급제동·급회전	뒤에 친구가 있어서 신나! 커브에선 살살 가 줘.
+DLG-GLEO-MOOD-04	B+	최근 10분 급제동·급회전	아까 깜짝했는데 이제 괜찮아. 천천히 가도 좋아.
+DLG-GLEO-MOOD-05	B+	HUNGRY|topic=hunger	조금 배고파. 다음에 주유하면 좋겠어.
+DLG-GLEO-MOOD-06	B+	HUNGRY,PROFILE:EV	조금 배고파. 다음에 충전하면 좋겠어.
+DLG-GLEO-MOOD-07	B+	topic=hunger,배고픔 아님	배 든든해! 걱정 마.
+DLG-GLEO-MOOD-08	B+	AIL:TPMS	발이 조금 시려. 내리면 공기압 봐 줄래?
+DLG-GLEO-MOOD-09	B+	AIL:WASHER	눈이 조금 뻑뻑해. 다음에 워셔액 채워 줘.
+DLG-GLEO-MOOD-10	B+	AIL:OIL	기운이 조금 없어. 내리면 오일 봐 줄래?
+DLG-GLEO-MOOD-11	B+	topic=health,아픔 없음	아픈 데 없어! 튼튼해.
+DLG-GLEO-MOOD-12	B+	PAX	뒤에 친구가 있어서 신나!
+DLG-GLEO-MOOD-13	B+	RAIN	빗소리 들으면서 가는 중이야. 포근해.
+DLG-GLEO-MOOD-14	B+	NIGHT	밤길이라 별 보는 중이야.
+DLG-GLEO-MOOD-15	B+	이번 주행 10분 이상,급제동·급회전 0	오늘 길 부드러워서 꾸벅꾸벅 졸려.
+DLG-GLEO-MOOD-16	B+	기분 GREAT	엄청 신나! 오늘 길 최고야.
+DLG-GLEO-MOOD-17	B+	기분 GOOD	기분 좋아! 같이 가는 거 좋아.
+DLG-GLEO-MOOD-18	B+	기분 OK	괜찮아. 창밖 구경하는 중이야.
+DLG-GLEO-MOOD-19	B+	기분 LOW	조금 나른해. 그래도 너랑 있어서 좋아.
+DLG-GLEO-MOOD-20	Y	기분 GOOD 이상	너랑이면 어디든 좋아.
+DLG-GLEO-MOOD-21	B+	GUEST	지금은 쉬는 중이야.
+DLG-GLEO-MOOD-E1	E		**꼬물꼬물.** (알 속에서 기분 좋아 보여요)
+DLG-GLEO-DISTANCE-01	B+	경로 안내 중,남은 5km 이상	{km.이번}km 왔어! {km.남음}km 남았대.
+DLG-GLEO-DISTANCE-02	B+	남은 5km 미만	거의 다 왔어! {km.남음}km래.
+DLG-GLEO-DISTANCE-03	B+	scope=trip,경로 없음	이번에 {km.이번}km 왔어!
+DLG-GLEO-DISTANCE-04	B+	scope=today	오늘 같이 {km.오늘}km 왔어!
+DLG-GLEO-DISTANCE-05	B+	scope=together	우리 같이 {km.함께}km 달렸어.
+DLG-GLEO-DISTANCE-06	B+	이번 주행 1km 미만	이제 막 출발했어!
+DLG-GLEO-DISTANCE-07	B+	scope=remaining,경로 없음	목적지는 아직 몰라. 오늘은 {km.오늘}km 왔어.
+DLG-GLEO-DISTANCE-E1	E		**콩콩.** (오늘 {km.오늘}km 같이 와서 신나요)
+DLG-GLEO-THANKS-01	B+	kind=thanks	헤헤, 나도 고마워!
+DLG-GLEO-THANKS-02	C+	kind=thanks	고마워! 나도 너 좋아.
+DLG-GLEO-THANKS-03	B+	kind=goodnight	잘 자! 꿈에서 만나.
+DLG-GLEO-THANKS-04	B+	kind=praise	너도 수고 많았어!
+DLG-GLEO-THANKS-05	B+	kind=love	나도! 엄청 많이.
+DLG-GLEO-THANKS-06	Y	kind=thanks	단짝이 고맙다니, 행복해.
+DLG-GLEO-THANKS-07	A+	kind=praise	오늘도 같이 와 줘서 고마워.
+DLG-GLEO-THANKS-E1	E		**톡톡!** (고마워서 알이 흔들려요)
+DLG-GLEO-FAIL-01	*	부화 전	아직 알이 깨어나지 않았어요. 차를 세우면 만나요.
+DLG-GLEO-FAIL-02	*	내부 오류,5초 초과	지금은 대답하기 어려워요. 차를 세우면 만나요.
+DLG-SYS-AIL-TPMS	*		가까운 주유소 공기 주입기나 정비소에서 타이어 공기압을 확인해 주세요.
+DLG-SYS-AIL-WASHER	*		워셔액을 채워 주세요. 주유소나 마트에서 살 수 있어요.
+DLG-SYS-AIL-OIL	*		엔진오일 점검이 필요해요. 정비소에서 확인해 주세요.
+DLG-SYS-AIL-BRAKE_FLUID	*		브레이크액 경고가 켜져 있어요. 안전한 곳에서 정비 점검을 받아 주세요.
+DLG-SYS-AIL-MISSION_OIL	*		변속기 오일 경고가 켜져 있어요. 정비 점검을 받아 주세요.
+DLG-SYS-AIL-POWER_DOWN	*		차량 경고가 켜져 있어요. 계기판 안내를 확인하고 정비 점검을 받아 주세요.
+DLG-SYS-AIL-AIRBAG	*		에어백 경고가 켜져 있어요. 정비 점검을 받아 주세요.
+DLG-SYS-HUNGRY-FUEL	*		주유하면 {펫이름|이/가} 든든해져요.
+DLG-SYS-HUNGRY-EV	*		충전하면 {펫이름|이/가} 든든해져요.
+DLG-SYS-GUEST	*		손님 모드 중에는 주행을 기록하지 않아요.
+DLG-SYS-DELETE	*		지우면 되돌릴 수 없어요. {펫이름|은/는} 알로 돌아가요.
+DLG-SYS-LOCATION	*		켜면 처음 간 동네가 도장으로 남아요. 위치는 차 안에만 저장돼요.
+DLG-SYS-GLEO-HELP	*		운전 중에 "차마 {펫이름} 기분 어때?"라고 물어보세요.
+DLG-SYS-QUIET-ON	*		오늘은 조용히 있을게.
+DLG-SYS-QUIET-OFF	*		다시 같이 흥얼거릴게.
+DLG-SYS-GROW-LINE	*		1km나 5분 넘게 운전한 날마다 하루씩 자라요.
+DLG-SYS-GROW-NEXT-BABY	*		다음 날 시동을 걸면 아기가 돼요.
+DLG-SYS-GROW-NEXT-CHILD	*		다음 날 시동을 걸면 어린이가 돼요.
+DLG-SYS-GROW-NEXT-ADULT	*		다음 날 시동을 걸면 어른이 돼요.
+DLG-SYS-GROW-BUDDY	*		차 생일(1주년)에 단짝이 돼요.
+DLG-SYS-GROW-ANNIV	*		차 생일마다 같이 축하해요.
+DLG-SYS-HEART-LINE	*		하트: 운전한 날 · 주유·충전·회복 · 쓰다듬기·간식
+DLG-SYS-LOOK-HATCH	*		차가 골라 준 처음 모습이에요. 마음대로 바꿔도 돼요.
+DLG-SYS-LOOK-HINT	*		언제든 다시 바꿀 수 있어요.
+DLG-SYS-SNACK-HINT	*		더 얻는 곳: 오늘 첫 주행 · 휴게소에서 쉬기 · 처음 가 본 지역

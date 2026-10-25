@@ -1,0 +1,5 @@
+<resources>
+    <string name="chama_channel">함께 타는 중</string>
+    <string name="chama_riding">%1$s 함께 타고 있어요</string>
+    <string name="chama_riding_generic">함께 타고 있어요</string>
+</resources>

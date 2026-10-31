@@ -111,7 +111,12 @@ class FakePetController(initial: AppUiState = Samples.room()) : PetController {
     override fun renamePet(name: String) = s.update { it.copy(pet = it.pet?.copy(name = name)) }
     override fun setPassengerNames(names: List<String>) = s.update { it.copy(passengerNames = names.take(6)) }
     override fun updateSettings(settings: AppSettings) = s.update { it.copy(settings = settings) }
-    override fun clearPlaces() = s.update { it.copy(pet = it.pet?.copy(places = emptyMap())) }
+    override fun clearPlaces() = s.update { state ->
+        val memories = state.memories.filterNot { it.event == EventId.NEW_PLACE }.map { it.copy(place = null) }
+        state.copy(pet = state.pet?.withoutPlaces(), settings = state.settings.copy(locationOn = false), memories = memories,
+            weekly = state.weekly?.filterNot { it.event == EventId.NEW_PLACE }?.map { it.copy(place = null) }, scene = null, pendingEarlierScene = null)
+    }
+    override fun retrySave() = s.update { it.copy(saveFailed = false) }
     override fun deleteAllData() = s.update { AppUiState(now = it.now, odometerKm = it.odometerKm, hatchPreview = it.hatchPreview, demoMode = it.demoMode) }
     override fun setDemoMode(on: Boolean) = s.update { it.copy(demoMode = on) }
     override fun runDemo(script: String) {}

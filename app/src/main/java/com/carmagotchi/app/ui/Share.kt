@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -36,16 +37,32 @@ private val CARD_SUB = Color(0xFF5A5464)
 
 fun stageName(s: Stage) = when (s) { Stage.EGG -> "알"; Stage.BABY -> "아기"; Stage.CHILD -> "어린이"; Stage.ADULT -> "어른"; Stage.BUDDY -> "단짝" }
 
+/** 제목에도 개인정보가 들어 있으므로 미리보기와 QR에 같은 공개 범위를 적용한다. */
+fun shareTitle(m: Memory, withName: Boolean, withPlace: Boolean): String = when {
+    !withPlace && m.event == com.carmagotchi.app.domain.EventId.NEW_PLACE -> "새로운 곳에 처음 갔어"
+    !withPlace && m.place != null -> m.title.replace(m.place, "새로운 곳")
+    else -> m.title
+}.let { title ->
+    if (!withName && !m.with.isNullOrEmpty()) title.replace("${m.with}이랑", "친구랑").replace("${m.with}랑", "친구랑").replace(m.with, "친구") else title
+}
+
+private fun String.dropLastCodePoint(): String = if (isEmpty()) this else substring(0, offsetByCodePoints(length, -1))
+
 /** 8.2 QR 내용: 사람이 읽는 텍스트(호스팅 없음), 300바이트 이하. VIN·좌표·동승자 이름(토글 전)은 넣지 않는다. */
 fun qrText(pet: PetState, m: Memory, withName: Boolean, locationOn: Boolean): String {
     val a = pet.appearance
-    fun build(title: String) = listOfNotNull(
-        "차마고찌 카드", "${pet.name} · ${stageName(pet.stage)}", title, m.at.atZone(ZoneId.of("Asia/Seoul")).toLocalDate().toString(),
-        "모습 ${a.palette}-${a.pattern}-${a.eyes}-${a.quirk}", m.place.takeIf { locationOn }, m.with.takeIf { withName }?.let { "함께 $it" }, "#차마고찌 #PleosConnect",
+    val fields = mutableListOf(pet.name, shareTitle(m, withName, locationOn), m.place.takeIf { locationOn }.orEmpty(), m.with.takeIf { withName }.orEmpty())
+    // 모든 가변 항목을 제한한다. 보조 평면 문자(이모지)를 반으로 자르지 않는다.
+    for (i in fields.indices) fields[i] = fields[i].codePoints().limit(100).toArray().let { String(it, 0, it.size) }
+    fun build() = listOfNotNull(
+        "차마고찌 카드", "${fields[0]} · ${stageName(pet.stage)}", fields[1], m.at.atZone(ZoneId.of("Asia/Seoul")).toLocalDate().toString(),
+        "모습 ${a.palette}-${a.pattern}-${a.eyes}-${a.quirk}", fields[2].takeIf { it.isNotEmpty() }, fields[3].takeIf { it.isNotEmpty() }?.let { "함께 $it" }, "#차마고찌 #PleosConnect",
     ).joinToString("\n")
-    var title = m.title
-    while (build(title).toByteArray().size > 300 && title.isNotEmpty()) title = title.dropLast(1)
-    return build(title)
+    while (build().toByteArray(Charsets.UTF_8).size > 300) {
+        val i = fields.indices.maxBy { fields[it].toByteArray(Charsets.UTF_8).size }
+        fields[i] = fields[i].dropLastCodePoint()
+    }
+    return build()
 }
 
 /** 모듈을 정수 px로 그려 흐림을 막는다(8.2). 흰 바탕 + 조용한 영역 4모듈. */
@@ -67,13 +84,13 @@ fun QrView(text: String, size: Dp, modifier: Modifier = Modifier) {
 
 /** 항상 밝은 카드(테마와 무관). qr = null이면 QR 없이 미리보기. */
 @Composable
-fun QrShareCard(pet: PetState, m: Memory, state: AppUiState, withName: Boolean, qr: String?, modifier: Modifier = Modifier) {
+fun QrShareCard(pet: PetState, m: Memory, state: AppUiState, withName: Boolean, qr: String?, modifier: Modifier = Modifier, withPlace: Boolean = false) {
     CompositionLocalProvider(LocalChama provides LightColors) {
         Column(modifier.width(512.dp).height(624.dp).shadow(6.dp, RoundedCornerShape(28.dp), ambientColor = Color(0x14000000), spotColor = Color(0x14000000)).background(CARD_BG, RoundedCornerShape(28.dp)).border(1.dp, Color(0xFFE3D9CC), RoundedCornerShape(28.dp)).padding(24.dp)) {
             Box(Modifier.size(464.dp, 256.dp).background(Color(0xFFF4ECE2), RoundedCornerShape(20.dp)), Alignment.Center) { MemoryPicture(pet, m, 240.dp) }
             Spacer(Modifier.height(16.dp))
-            Text(m.title, style = Type.headline, color = CARD_INK, maxLines = 1)
-            val sub = listOfNotNull("함께한 지 ${pet.daysTogether}일", fmtDate(m.at, state.now), m.with.takeIf { withName }, m.place.takeIf { state.settings.locationOn }).joinToString(" · ")
+            Text(shareTitle(m, withName, withPlace && state.settings.locationOn), style = Type.headline, color = CARD_INK, maxLines = 1)
+            val sub = listOfNotNull("함께한 지 ${pet.daysTogether}일", fmtDate(m.at, state.now), m.with.takeIf { withName }, m.place.takeIf { withPlace && state.settings.locationOn }).joinToString(" · ")
             Text(sub, style = Type.body, color = CARD_SUB, maxLines = 1)
             Spacer(Modifier.weight(1f))
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.Bottom) {
@@ -92,30 +109,36 @@ fun QrShareCard(pet: PetState, m: Memory, state: AppUiState, withName: Boolean, 
 fun ShareScreen(state: AppUiState, m: Memory, onBack: () -> Unit) {
     val c = LocalChama.current
     val pet = state.pet ?: return
-    var withName by remember { mutableStateOf(false) }
+    var withName by rememberSaveable(m.id) { mutableStateOf(false) }
+    var withPlace by rememberSaveable(m.id) { mutableStateOf(false) }
+    val includePlace = withPlace && state.settings.locationOn
     var tries by remember { mutableIntStateOf(0) }
-    val qr = remember(m, withName, tries, state.settings.locationOn) { qrText(pet, m, withName, state.settings.locationOn) }
+    val qr = remember(pet, m, withName, tries, includePlace) { qrText(pet, m, withName, includePlace) }
     val ok = remember(qr, tries) { runCatching { QRCodeWriter().encode(qr, BarcodeFormat.QR_CODE, 0, 0) }.isSuccess }
     Column(Modifier.fillMaxSize().background(c.canvas)) {
         PageNav("공유 카드", null, onBack = onBack)
         Responsive(Modifier.weight(1f).fillMaxWidth()) { land ->
-            val toggle = @Composable { if (m.with != null) SwitchRow("이름 넣기 (${m.with})", withName, { withName = it }) }
+            val toggle = @Composable {
+                if (m.with != null) SwitchRow("이름 넣기 (${m.with})", withName, { withName = it })
+                if (m.place != null && state.settings.locationOn) SwitchRow("장소 넣기 (${m.place})", withPlace, { withPlace = it })
+                Text("QR에는 카드의 글자가 담겨요. 사진은 화면을 촬영해 저장해 주세요.", style = Type.caption, color = c.textSecondary, modifier = Modifier.padding(Dim.margin))
+            }
             if (land) Row(Modifier.fillMaxSize().padding(Dim.margin), horizontalArrangement = Arrangement.spacedBy(Dim.margin)) {
-                Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), horizontalAlignment = Alignment.CenterHorizontally) { QrShareCard(pet, m, state, withName, null) }
+                Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), horizontalAlignment = Alignment.CenterHorizontally) { QrShareCard(pet, m, state, withName, null, withPlace = includePlace) }
                 Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
                     if (ok) {
                         Box(Modifier.background(Color.White, RoundedCornerShape(16.dp)).padding(16.dp)) { QrView(qr, 280.dp) }
                         Spacer(Modifier.height(24.dp))
                         Text("1. 휴대폰 카메라를 켜요", style = Type.body, color = c.textPrimary)
-                        Text("2. QR을 비추면 카드를 저장할 수 있어요", style = Type.body, color = c.textPrimary)
+                        Text("2. QR을 비추면 추억의 글자를 읽을 수 있어요", style = Type.body, color = c.textPrimary)
                         Text("화면을 사진으로 찍어 가도 돼요", style = Type.caption, color = c.textSecondary)
                     } else FailNote { tries++ }
                     toggle()
                 }
             } else Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(vertical = 24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                if (ok) QrShareCard(pet, m, state, withName, qr) else FailNote { tries++ }
+                if (ok) QrShareCard(pet, m, state, withName, qr, withPlace = includePlace) else FailNote { tries++ }
                 toggle()
-                Text("휴대폰 카메라로 QR을 찍으면 카드를 저장할 수 있어요", style = Type.caption, color = c.textSecondary, textAlign = TextAlign.Center, modifier = Modifier.padding(horizontal = Dim.margin, vertical = 12.dp))
+                Text("휴대폰 카메라로 QR을 찍으면 추억의 글자를 읽을 수 있어요", style = Type.caption, color = c.textSecondary, textAlign = TextAlign.Center, modifier = Modifier.padding(horizontal = Dim.margin, vertical = 12.dp))
             }
         }
     }

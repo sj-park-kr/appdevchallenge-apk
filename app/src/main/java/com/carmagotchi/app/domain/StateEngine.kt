@@ -119,7 +119,7 @@ class StateEngine(private val clock: Clock, private val zone: ZoneId = ZoneId.of
     fun confirmTrip(state: PetState, trip: TripSummary): Step {
         val now = clock.instant()
         if (state.guestModeUntil?.isAfter(now) == true) return Step(state.copy(pendingTrip = null))
-        val recorded = state.copy(trips = (state.trips + trip).takeLast(Const.TRIPS_KEPT), pendingTrip = null)
+        val recorded = state.copy(trips = (state.trips + if (state.locationOn) trip else trip.copy(place = null)).takeLast(Const.TRIPS_KEPT), pendingTrip = null)
         if (trip.micro) return Step(recorded)
 
         // 시계가 뒤로 가도 하루 키는 줄지 않는다.

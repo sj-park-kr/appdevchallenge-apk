@@ -62,7 +62,7 @@ class RuntimePetController private constructor(private val app: Context) : PetCo
     @Volatile private var togetherSec = 0
 
     init {
-        scope.launch { merge(rt.pet, rt.arrival, rt.depart, rt.settings, rt.uxRestricted, rt.gear).collect { refresh() } }
+        scope.launch { merge(rt.pet, rt.arrival, rt.depart, rt.settings, rt.uxRestricted, rt.gear, rt.saveFailed).collect { refresh() } }
         scope.launch {
             while (true) {
                 delay(Const.XP_TICK_SEC * 1000L)
@@ -94,15 +94,16 @@ class RuntimePetController private constructor(private val app: Context) : PetCo
         val pet = rt.pet.value
         val set = rt.settings.value
         val parked = rt.gear.value == Gear.P && !rt.uxRestricted.value
+        if (ui.value.settings.locationOn && pet?.locationOn == false) { scene = null; earlier = null; bubble = null }
         if (pet == null) { scene = null; earlier = null; seenArrival = null; seenDepart = null; bubble = null }
         else {
-            rt.arrival.value?.let { arr ->
+            rt.arrival.value?.takeIf { it.step.state.locationOn == pet.locationOn }?.let { arr ->
                 if (arr.trip.tripId != seenArrival) {
                     seenArrival = arr.trip.tripId
                     if (set.arriveCard) arriveScene(arr)?.let { sc -> if (!arr.missed && visible && parked) show(sc) else earlier = sc to now }
                 }
             }
-            rt.depart.value?.let { d ->
+            rt.depart.value?.takeIf { it.step.state.locationOn == pet.locationOn }?.let { d ->
                 if (d !== seenDepart) { seenDepart = d; departAt = now; departShown = false }
                 if (!departShown && visible && parked && scene == null && Duration.between(departAt, now).toMinutes() < 30) {
                     departShown = true
@@ -246,6 +247,7 @@ class RuntimePetController private constructor(private val app: Context) : PetCo
             pet = pet, scene = scene, pendingEarlierScene = earlier?.first, bubble = bubble, isParked = parked,
             reduceMotion = Global.getFloat(app.contentResolver, Global.ANIMATOR_DURATION_SCALE, 1f) == 0f,
             demoMode = set.demoMode,
+            saveFailed = rt.saveFailed.value,
             settings = AppSettings(
                 arriveCard = set.arriveCard, departGreeting = set.departGreeting, driveSounds = !set.driveSoundsOff, parkedSounds = !set.sfxOff, quietToday = now.toEpochMilli() < set.quietUntilMs,
                 guestMode = pet?.guestModeUntil?.isAfter(now) == true, locationOn = pet?.locationOn ?: false,
@@ -333,17 +335,9 @@ class RuntimePetController private constructor(private val app: Context) : PetCo
     override fun renamePet(name: String) { val n = name.trim().take(6); if (n.isNotEmpty()) rt.update { it?.copy(name = n) } }
 
     override fun setPassengerNames(names: List<String>) {
-        val new = names.map { it.trim().take(6) }.filter { it.isNotEmpty() }.distinct().take(6)
-        val removed = rt.settings.value.passengerNames.orEmpty() - new.toSet()
-        rt.updateSettings { it.copy(passengerNames = new) }
-        // 지운 이름이 붙은 동승 기억은 "친구"로 돌린다(F13)
-        if (removed.isNotEmpty()) rt.update { p ->
-            p?.copy(
-                companions = p.companions - removed.toSet(),
-                trips = p.trips.map { if (it.companionName in removed) it.copy(companionName = null) else it },
-                pendingTrip = p.pendingTrip?.let { if (it.companionName in removed) it.copy(companionName = null) else it },
-            )
-        }
+        synchronized(lock) { scene = null; earlier = null; bubble = null }
+        rt.setPassengerNames(names)
+        refresh()
     }
 
     override fun updateSettings(settings: AppSettings) {
@@ -355,7 +349,11 @@ class RuntimePetController private constructor(private val app: Context) : PetCo
         if (settings.guestMode != cur.guestMode) rt.update { p -> p?.copy(guestModeUntil = if (settings.guestMode) rt.clock.instant().plus(Duration.ofHours(Const.GUEST_MODE_H.toLong())) else null) }
     }
 
-    override fun clearPlaces() { rt.update { it?.copy(places = emptyMap()) } }
+    override fun clearPlaces() {
+        synchronized(lock) { scene = null; earlier = null; bubble = null }
+        rt.clearPlaces()
+    }
+    override fun retrySave() = rt.retrySave()
     override fun deleteAllData() { rt.deleteAll() }
     override fun setDemoMode(on: Boolean) { rt.updateSettings { it.copy(demoMode = on) } }
     override fun setLook(look: CarLook) { rt.update { it?.copy(look = look.clamped()) } }

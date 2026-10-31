@@ -21,6 +21,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -50,12 +51,14 @@ class PetRuntime private constructor(private val app: Context) {
     val selector = DialogueSelector(lines, clock)
     val gleoAnswers = GleoAnswers(lines)
     private val store = PetStore(dataDir(app), KeystoreCrypto.create())
+    private val saver = SessionSaver(store::save)
     val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default.limitedParallelism(1))
 
     val pet = MutableStateFlow<PetState?>(null)
     val arrival = MutableStateFlow<Arrival?>(null)
     val depart = MutableStateFlow<DepartInfo?>(null)
     val settings = MutableStateFlow(Settings())
+    val saveFailed = MutableStateFlow(false)
     /** CarUxRestrictions가 주행 규제(DO 필요)를 걸었는지. 서비스가 돌 때만 갱신된다. */
     val uxRestricted = MutableStateFlow(false)
     val lastGleo = MutableStateFlow<GleoAnswer?>(null)
@@ -72,12 +75,14 @@ class PetRuntime private constructor(private val app: Context) {
     init {
         store.load()?.let { session = PetSession(it, engine, clock) }
         publish()
+        scope.launch { while (true) { delay(30_000); if (saver.failed) publish() } }
     }
 
     /** 저장하고(바뀌었으면) 흐름에 반영한다. scope 스레드에서만 부른다. */
-    private fun publish() {
+    private fun publish(forceSave: Boolean = false) {
         val s = session
-        if (s != null && s.takeDirty()) runCatching { store.save(s.snapshot()) }.onFailure { Log.e(TAG, "save failed: ${it.javaClass.simpleName}") }
+        saver.persist(s, clock.instant(), forceSave)
+        saveFailed.value = saver.failed
         pet.value = s?.pet
         arrival.value = s?.arrival
         depart.value = s?.depart
@@ -92,6 +97,9 @@ class PetRuntime private constructor(private val app: Context) {
     fun onSample(s: VehicleSample) { gear.value = s.gear; post { session?.let { it.onSample(s); it.takeSound()?.let(sounds::tryEmit) } } }
     /** 소리를 못 냈다(포커스 거부, 통화 중 등): 횟수에서 뺀다. */
     fun soundFailed() = post { session?.cancelSound() }
+    fun setPassengerNames(names: List<String>) = post { session?.setPassengerNames(names) }
+    fun clearPlaces() = post { source?.locationOn = false; session?.clearPlaces() }
+    fun retrySave() { scope.launch { publish(forceSave = true) } }
     fun setCompanion(name: String?) = post { session?.companion = name }
     fun sessionStart() = post { session?.onSessionStart() }
     fun sessionEnd() = post { session?.onSessionEnd(clock.instant()) }

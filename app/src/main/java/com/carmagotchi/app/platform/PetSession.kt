@@ -23,6 +23,7 @@ import com.carmagotchi.app.domain.TripSummary
 import com.carmagotchi.app.domain.VehicleSample
 import com.carmagotchi.app.domain.dayKey
 import com.carmagotchi.app.domain.hungerOf
+import com.carmagotchi.app.domain.withoutPlaces
 import com.carmagotchi.app.gleo.GleoContext
 import java.time.Clock
 import java.time.Duration
@@ -90,7 +91,43 @@ class PetSession(
     fun replace(p: PetState) { pet = p; dirty = true }
     fun changed() { dirty = true }
 
-    fun onSample(s: VehicleSample) {
+    fun clearPlaces() {
+        pet = pet.withoutPlaces()
+        cp = cp?.copy(place = null)
+        parkPlace = null
+        detector.clearPlaces()
+        arrival = null
+        depart = null
+        dirty = true
+    }
+
+    /** 지운 이름은 과거 기억과 아직 확정되지 않은 주행에도 남기지 않는다. */
+    fun setPassengerNames(names: List<String>) {
+        val next = names.map { it.trim().take(6) }.filter { it.isNotEmpty() }.distinct().take(6)
+        val removed = settings.passengerNames.orEmpty().toSet() - next.toSet()
+        settings = settings.copy(passengerNames = next)
+        if (removed.isNotEmpty()) {
+            fun clean(t: TripSummary) = if (t.companionName in removed) t.copy(companionName = null) else t
+            pet = pet.copy(
+                companions = pet.companions - removed,
+                trips = pet.trips.map(::clean),
+                pendingTrip = pet.pendingTrip?.let(::clean),
+                memory = pet.memory.map { m ->
+                    if (m.kind == "COMPANION" && m.ref?.substringBeforeLast(':') in removed)
+                        m.copy(ref = "친구:${m.ref?.substringAfterLast(':')}") else m
+                },
+            )
+            cp = cp?.let(::clean)
+            if (companion in removed) companion = null
+            // 이전 상태를 담은 장면도 다시 사용하지 않는다.
+            arrival = null
+            depart = null
+        }
+        dirty = true
+    }
+
+    fun onSample(sample: VehicleSample) {
+        val s = if (pet.locationOn) sample else sample.copy(place = null)
         val prev = lastGear
         lastGear = s.gear
         lastOdo = s.odometerKm

@@ -79,10 +79,10 @@ class DetectorTest {
         assertTrue(r.events.isEmpty())
     }
 
-    @Test fun f1ac6_emulatorProfileAfter60sOfNoSpeed() {
+    @Test fun f1ac6_emulatorProfileAfter60sOfZeroSpeed() {
         val d = EventDetector(KST)
         d.feed(sample(t(0), Gear.P))
-        for (i in 1..70) d.feed(sample(t(i), Gear.D))
+        for (i in 1..70) d.feed(sample(t(i), Gear.D, speed = 0.0))
         assertEquals(SignalProfile.EMULATOR, d.profile)
     }
 

@@ -25,7 +25,7 @@ android {
     buildFeatures { compose = true; buildConfig = true }
     testOptions.unitTests.isIncludeAndroidResources = true
     // 화면 PNG 테스트는 debug 전용(compose test manifest가 debug에만 있다)
-    testOptions.unitTests.all { if (it.name.contains("Release")) it.exclude("**/ScreensTest*") }
+    testOptions.unitTests.all { if (it.name.contains("Release")) it.exclude("**/ScreensTest*", "**/ShareScreenTest*") }
     // 단위 테스트가 assets/dialogue.tsv를 그대로 읽는다
     sourceSets["test"].resources.srcDir("src/main/assets")
 }

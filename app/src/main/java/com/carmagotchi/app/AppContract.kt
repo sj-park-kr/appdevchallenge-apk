@@ -78,6 +78,7 @@ data class AppUiState(
     val isParked: Boolean = true,               // false면 화면에 펫을 그리지 않는다(M0)
     val reduceMotion: Boolean = false,          // animator_duration_scale == 0
     val demoMode: Boolean = false,
+    val saveFailed: Boolean = false,           // 최신 변경이 아직 기기에 저장되지 않음
     val settings: AppSettings = AppSettings(),
     val passengerNames: List<String> = emptyList(),
     val placed: List<String> = emptyList(),     // 방 칸에 놓은 물건 ID(앞에서부터 칸 1, 2, …)
@@ -111,6 +112,7 @@ interface PetController {
     fun setPassengerNames(names: List<String>)   // 최대 6개, 이름 6자
     fun updateSettings(settings: AppSettings)
     fun clearPlaces()                            // 위치 사용을 끌 때 장소 도장 지우기
+    fun retrySave() {}
     fun deleteAllData()
     fun setDemoMode(on: Boolean)
     fun setLook(look: CarLook) {}                // 모습 꾸미기 저장(F16)

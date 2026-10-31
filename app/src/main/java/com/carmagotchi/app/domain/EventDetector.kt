@@ -83,6 +83,12 @@ class EventDetector(
     /** 저장해 둘 마지막 P 값. */
     val baseline get() = DetectorSeed(curFuel, curSoc, curRefill, warnOn.toSet())
 
+    fun clearPlaces() {
+        trip?.place = null
+        prev = prev?.copy(place = null)
+        for (i in parkBuf.indices) parkBuf[i] = parkBuf[i].copy(place = null)
+    }
+
     private fun sec(a: Instant, b: Instant) = Duration.between(a, b).toMillis() / 1000.0
     private fun ready(last: Instant?, now: Instant, minSec: Double) = last == null || sec(last, now) >= minSec
 
@@ -226,7 +232,7 @@ class EventDetector(
         if (brakeOn(s) == true) lastBrakeOn = s.at
 
         // PRD 확인 필요: 실차 신호대기 60초도 "속도 0"이라, 속도가 한 번도 0 초과였던 적이 없을 때만 EMULATOR로 바꾼다.
-        if (s.gear == Gear.D && (s.speedKmh ?: 0.0) == 0.0 && !speedEverPositive) {
+        if (s.gear == Gear.D && s.speedKmh == 0.0 && !speedEverPositive) {
             zeroSince = zeroSince ?: s.at
             if (sec(zeroSince!!, s.at) >= 60) profile = SignalProfile.EMULATOR
         } else zeroSince = null

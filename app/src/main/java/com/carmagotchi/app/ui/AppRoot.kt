@@ -75,8 +75,19 @@ fun AppContent(ctl: PetController, startTab: Int = 0, startOverlay: String? = nu
                 else -> Main(st, ctl, tab, { tab = it }, overlay, { overlay = it })
             }
             if (st.demoMode) DemoChip(Modifier.align(Alignment.TopCenter).padding(top = 12.dp))
+            if (st.isParked && st.saveFailed) SaveFailureNotice(ctl::retrySave, Modifier.align(Alignment.BottomCenter).padding(24.dp))
             toast?.let { Toast(it, Modifier.align(Alignment.BottomCenter).padding(24.dp)) }
         }
+    }
+}
+
+@Composable
+fun SaveFailureNotice(retry: () -> Unit, modifier: Modifier = Modifier) {
+    val c = LocalChama.current
+    Column(modifier.widthIn(max = 680.dp).background(c.ailmentBg, RoundedCornerShape(20.dp)).padding(20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Text("아직 저장하지 못했어요", style = Type.title, color = c.textPrimary)
+        Text("최신 변경이 저장되지 않았어요. 자동으로 다시 시도할게요. 저장될 때까지 앱을 종료하지 마세요.", style = Type.body, color = c.textPrimary)
+        Btn("저장 다시 시도", retry, Modifier.fillMaxWidth())
     }
 }
 

@@ -107,6 +107,7 @@ fun SettingsScreen(state: AppUiState, ctl: PetController, onLook: () -> Unit = {
         Group.DATA -> {
             SwitchRow("위치 사용 (장소 도장)", set.locationOn, { if (it) ctl.updateSettings(set.copy(locationOn = true)) else { ctl.updateSettings(set.copy(locationOn = false)); pop = Pop.LOC_OFF } })
             Text("켜면 처음 간 동네가 도장으로 남아요. 위치는 차 안에만 저장돼요.", style = Type.caption, color = c.textSecondary, modifier = Modifier.padding(horizontal = Dim.margin))
+            NavRow("장소 정보 모두 지우기", null, { pop = Pop.LOC_OFF }, danger = true)
             NavRow("데이터 모두 지우기", null, { pop = Pop.DELETE }, danger = true)
             NavRow("개인정보 안내", null, { pop = Pop.PRIVACY })
         }
@@ -142,10 +143,10 @@ fun SettingsScreen(state: AppUiState, ctl: PetController, onLook: () -> Unit = {
                     }
                 }
                 Pop.PASSENGERS -> NamesEditor(state.passengerNames, ctl::setPassengerNames) { pop = Pop.NONE }
-                Pop.LOC_OFF -> SystemPopup("장소 도장을 지울까요?", { pop = Pop.NONE }, large = false, buttons = {
+                Pop.LOC_OFF -> SystemPopup("장소 정보를 모두 지울까요?", { pop = Pop.NONE }, large = false, buttons = {
                     Btn("남겨 두기", { pop = Pop.NONE }, Modifier.weight(1f), primary = false)
                     Btn("지우기", { ctl.clearPlaces(); pop = Pop.NONE }, Modifier.weight(1f))
-                }) { Text("위치 사용을 껐어요. 지금까지 모은 장소 도장은 남겨 둘 수도 있어요.", style = Type.body, color = c.textPrimary) }
+                }) { Text("지우면 위치 사용을 끄고, 장소 도장과 과거·진행 중 주행 및 앨범에 남은 장소 이름을 지워요. 되돌릴 수 없어요. 펫의 성장과 다른 추억은 남아요.", style = Type.body, color = c.textPrimary) }
                 Pop.DELETE -> SystemPopup("모든 기억을 지울까요?", { pop = Pop.NONE }, large = false, buttons = {
                     Btn("취소", { pop = Pop.NONE }, Modifier.weight(1f), primary = false)
                     HoldButton("모두 지우기", { pop = Pop.NONE; ctl.deleteAllData() }, Modifier.weight(1f))

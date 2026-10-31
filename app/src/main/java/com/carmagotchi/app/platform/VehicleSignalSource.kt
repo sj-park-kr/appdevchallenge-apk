@@ -90,6 +90,7 @@ class VehicleSignalSource(private val ctx: Context, private val clock: Clock) {
     )
 
     @Volatile var locationOn = true
+        set(value) { synchronized(this) { field = value; if (!value) raw = raw.withoutPlace() } }
     @Volatile var fastWarn = false // 에뮬레이터·시연: 경고 디바운스 2초(실차 10초)
 
     val uxRestricted = MutableStateFlow(false)
@@ -110,6 +111,8 @@ class VehicleSignalSource(private val ctx: Context, private val clock: Clock) {
 
     fun current(): Raw = synchronized(this) { raw }
 
+    private fun Raw.withoutPlace() = copy(locAddress = null, destName = null, destAddress = null, remainM = null, placeOverride = null)
+
     /** 시연 모드가 기어를 바꾼다(속도·조향 구독 전환과 위치 요청까지 실제 기어 변화와 같은 경로). */
     fun injectGear(g: Gear) = setGear(g)
 
@@ -122,7 +125,7 @@ class VehicleSignalSource(private val ctx: Context, private val clock: Clock) {
     }
 
     fun update(f: (Raw) -> Raw) {
-        val s = synchronized(this) { raw = f(raw); toSample(raw) }
+        val s = synchronized(this) { raw = f(raw).let { if (locationOn) it else it.withoutPlace() }; toSample(raw) }
         sink?.invoke(s)
     }
 
@@ -424,10 +427,11 @@ class VehicleSignalSource(private val ctx: Context, private val clock: Clock) {
 
     /** CHAMA_DISTANCE용: 목적지까지 남은 km. 요청하고 최대 2초 기다리며, 안 오면 마지막 값. 경로가 없으면 null. */
     suspend fun remainKm(): Double? {
+        if (!locationOn) return null
         if (locationOn && naviReady) withTimeoutOrNull(2_000) {
             destUpdates.onSubscription { guard("navi") { navi.getDestinationInfo() } }.first()
         }
-        return current().remainM?.let { it / 1000.0 }
+        return if (locationOn) current().remainM?.let { it / 1000.0 } else null
     }
 }
 
